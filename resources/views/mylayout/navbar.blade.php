@@ -1,7 +1,7 @@
 <div class="main-header">
 			<div class="logo-header">
-				<a href="index.html" class="logo">
-					Ready Dashboard
+				<a href="{{route('dashboard')}}" class="logo">
+					Dashboard
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -12,14 +12,7 @@
 				<div class="container-fluid">
 					
 					<form class="navbar-left navbar-form nav-search mr-md-3" action="">
-						<div class="input-group">
-							<input type="text" placeholder="Search ..." class="form-control">
-							<div class="input-group-append">
-								<span class="input-group-text">
-									<i class="la la-search search-icon"></i>
-								</span>
-							</div>
-						</div>
+						
 					</form>
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 						
