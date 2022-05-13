@@ -9,12 +9,16 @@ class Task extends Model
 {
     use HasFactory;
 
+
+    // Get User Assigned with Task
     public function assignedTo()
     {
         return $this->belongsTo(User::class, 'assigned_to');
     }
+
+    // Get all Comments
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'comment_id');
+        return $this->hasMany(Comment::class, 'task_id');
     }
 }

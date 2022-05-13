@@ -71,7 +71,9 @@ class TaskController extends Controller
         
         $task = Task::find($request->id);
         $users = User::all();
-        return view('edit')->with(['task' => $task, 'users' => $users]);
+        $comments = $task->comments;
+        //dd($comments->first()->commentedBy);
+        return view('edit')->with(['task' => $task, 'users' => $users, 'comments' => $comments]);
     }
 
     /**
@@ -108,5 +110,6 @@ class TaskController extends Controller
     {
         $task = Task::find($request->task_id);
         $task->delete();
+        return redirect()->route('dashboard');
     }
 }

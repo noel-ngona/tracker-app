@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -24,12 +25,7 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $users = User::all();
-        //dd($users);
-        return view('create')->with(['users' => $users]);
-    }
+   
 
     /**
      * Store a newly created resource in storage.
@@ -44,8 +40,9 @@ class CommentController extends Controller
         $comment->user_id = Auth::user()->id;
         $comment->comment = $request->comment;
         $comment->task_id = $request->task_id;
+       
         $comment->save();
-       return redirect()->route('dashboard');
+       return redirect()->route('task.edit', ['id' => $request->task_id]);
     }
 
     /**
@@ -68,9 +65,7 @@ class CommentController extends Controller
     public function edit(Request $request)
     {
         
-        $task = Task::find($request->id);
-        $users = User::all();
-        return view('edit')->with(['task' => $task, 'users' => $users]);
+        
     }
 
     /**
@@ -82,19 +77,7 @@ class CommentController extends Controller
      */
     public function update(Request $request)
     {
-        $task = Task::find($request->id);
-        $task->title = $request->title;
-        $task->description = $request->description;
-        $task->due_date = $request->due_date;
-        if(isset($request->assigned)){
-            $task->assigned_to = $request->assigned;
-        }
-        if(isset($request->status)){
-            $task->completion_status = $request->status;
-        }
         
-        $task->save();
-        return redirect()->route('dashboard');
     }
 
     /**
@@ -105,7 +88,6 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        $task = Task::find($id);
-        $task->delete();
+       
     }
 }

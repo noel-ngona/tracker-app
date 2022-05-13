@@ -21,6 +21,8 @@
                             <div class="card-sub">									
                                 
                             </div>
+
+                            <!-- Form to update a task -->
                             <form action="{{route('task.update', ['id' => $task->id])}}" method="post">
                                 {{csrf_field()}}
                                 <div class="form-group">
@@ -51,14 +53,17 @@
                                 </div>
                                 <button  class = 'btn btn-primary'type="submit">Submit</button>
                                 
+
+                                <!-- Form to add Comments -->
                             </form>
 
 
                             <h2>Add Comment</h2>
                             <form action="{{route('add_comment')}}" method="post">
+                                {{ csrf_field()}}
                                 <div class="form-group">
                                     <label for="">Comment</label>
-                                    <textarea class= "form-control" name="comment" id="" cols="30" rows="5"></textarea>
+                                    <textarea class= "form-control" name="comment" id="" cols="30" rows="5"required></textarea>
                                     <input type="hidden" name="task_id" value="{{$task->id}}">
                                     <button class="btn btn-primary" type="submit">Submit</button>
                                 </div>
@@ -77,7 +82,22 @@
                                 </div>
                         </div>
                         <div class="card-body">
-                            <h5>Comments</h5>
+                            <h2>Comments</h2>
+
+
+                            @if($comments->count() > 0)
+                                @foreach($comments as $comment)
+                                <h5>{{$comment->commentedBy->name}}</h5>
+
+                                <p>{{$comment->comment}}</p>
+                                <b>{{$comment->created_at}}</b>
+                                <hr>
+                                <br>
+                                <br>
+
+                                @endforeach
+
+                            @endif
                             
                     </div>
 

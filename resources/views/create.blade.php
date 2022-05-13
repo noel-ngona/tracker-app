@@ -13,19 +13,19 @@
 									</div>
 									<div class="card-body">
 										<div class="card-sub">									
-											
+											<!-- Form to Create a task -->
 										</div>
 										<form action="{{route('task.store')}}" method="post">
                                             {{csrf_field()}}
                                             <div class="form-group">
                                                 <label for="">Title</label>
-                                                <input name= "title" type="text" class="text form-control">
+                                                <input name= "title" type="text" class="text form-control" required>
                                                 <label for="">Description</label>
-                                                <textarea class = "form-control"name="description" id="" cols="30" rows="5"></textarea>
+                                                <textarea class = "form-control"name="description" id="" cols="30" rows="5"required></textarea>
                                                 <label for="">Due Date</label>
-                                                <input class="form-control" type="date" name="due_date" id="">
+                                                <input class="form-control" type="date" name="due_date" id=""required>
                                                 <label for="">Assign To</label>
-                                                <select class="form-control" name="assigned" id="" >
+                                                <select class="form-control" name="assigned" id="" required>
                                                     @foreach($users as $user)
                                                     <option value="{{$user->id}}" class="form-control">{{$user->name}}</option>
                                                     @endforeach

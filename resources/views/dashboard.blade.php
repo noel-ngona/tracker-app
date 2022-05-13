@@ -38,8 +38,12 @@
 													<td>{{$task->completion_status}}</td>
 													<td>{{$task->due_date}}</td>
                                                     <td>
+
+													<!-- View A task Action -->
                                                     <a href="{{route('task.edit', ['id' => $task->id])}}" class="btn btn-primary ">View/Edit</a>
 													@if($task->created_by == Auth::user()->id)
+
+													<!-- Delete a task form which is sent upon clicking the Delete Link -->
 															
 									<form id="delete-form" action="{{route('task.destroy')}}" method="POST" style="display: none;">
 										{{ csrf_field() }}
